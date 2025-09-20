@@ -16,11 +16,11 @@ const StyledDashboardLayout = styled.div`
 `;
 
 function DashboardLayout() {
-  const { bookings, isLoading: isLoading1 } = useRecentBookings();
-  const { confirmedStays, isLoading: isLoading2, numDays } = useRecentStays();
-  const { cabins, isLoading: isLoading3 } = useCabins();
+  const { bookings, isPending: isPending1 } = useRecentBookings();
+  const { confirmedStays, isPending: isPending2, numDays } = useRecentStays();
+  const { cabins, isPending: isPending3 } = useCabins();
 
-  if (isLoading1 || isLoading2 || isLoading3) return <Spinner />;
+  if (isPending1 || isPending2 || isPending3) return <Spinner />;
 
   return (
     <StyledDashboardLayout>
