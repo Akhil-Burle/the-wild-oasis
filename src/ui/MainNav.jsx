@@ -14,9 +14,6 @@ const NavList = styled.ul`
   gap: 0.8rem;
 `;
 
-// Here we wanna style the Navlink, so here we can actually pass another component instead of just a html element, so now its styled
-// So now its the whole component and not just the anchor component
-
 const StyledNavLink = styled(NavLink)`
   &:link,
   &:visited {
@@ -62,7 +59,8 @@ function MainNav() {
       <NavList>
         <li>
           <StyledNavLink to="/dashboard">
-            <HiOutlineHome /> <span>Home</span>
+            <HiOutlineHome />
+            <span>Home</span>
           </StyledNavLink>
         </li>
         <li>

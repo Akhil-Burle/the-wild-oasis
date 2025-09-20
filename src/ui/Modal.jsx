@@ -1,7 +1,7 @@
 import { cloneElement, createContext, useContext, useState } from "react";
-import styled from "styled-components";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
+import styled from "styled-components";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
@@ -23,7 +23,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100vh;
   background-color: var(--backdrop-color);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(4px);
   z-index: 1000;
   transition: all 0.5s;
 `;
@@ -68,30 +68,28 @@ function Modal({ children }) {
   );
 }
 
-function Open({ children, opens: openWindowName }) {
+function Open({ children, opens: opensWindowName }) {
   const { open } = useContext(ModalContext);
-  return cloneElement(children, { onClick: () => open(openWindowName) });
+
+  return cloneElement(children, { onClick: () => open(opensWindowName) });
 }
 
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
   const ref = useOutsideClick(close);
-  if (name !== openName) return null;
-  // So now using react-portal, the modal element is a direct child of the body element.
-  // But, inside the component tree the modal is in the exact same place, we can pass all the props that we want
-  // So it replaces, only in the dom, but in the component tree it will remain exact where it was before, nothing breaks
 
-  // We normally use portal where we wanna keep that particular component ON THE TOP of all the other elements in th entire app
+  if (name !== openName) return null;
+
   return createPortal(
     <Overlay>
       <StyledModal ref={ref}>
-        <Button>
-          <HiXMark onClick={close} />
+        <Button onClick={close}>
+          <HiXMark />
         </Button>
+
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
     </Overlay>,
-    // The second element is where we wanna render this element
     document.body
   );
 }

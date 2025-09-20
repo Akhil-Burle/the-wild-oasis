@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { HiXMark } from "react-icons/hi2";
 import { createPortal } from "react-dom";
+import { HiXMark } from "react-icons/hi2";
+import styled from "styled-components";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -21,7 +21,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100vh;
   background-color: var(--backdrop-color);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(4px);
   z-index: 1000;
   transition: all 0.5s;
 `;
@@ -52,22 +52,16 @@ const Button = styled.button`
 `;
 
 function Modal({ children, onClose }) {
-  // So now using react-portal, the modal element is a direct child of the body element.
-  // But, inside the component tree the modal is in the exact same place, we can pass all the props that we want
-  // So it replaces, only in the dom, but in the component tree it will remain exact where it was before, nothing breaks
-
-  // We normally use portal where we wanna keep that particular component ON THE TOP of all the other elements in th entire app
   return createPortal(
     <Overlay>
-      {" "}
       <StyledModal>
-        <Button>
-          <HiXMark onClick={onClose} />
+        <Button onClick={onClose}>
+          <HiXMark />
         </Button>
+
         <div>{children}</div>
       </StyledModal>
     </Overlay>,
-    // The second element is where we wanna render this element
     document.body
   );
 }

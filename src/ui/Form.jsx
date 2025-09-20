@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 
 const Form = styled.form`
-  /* ${(props) => (!props.type ? (props.type = "regular") : "")} */
   ${(props) =>
     props.type === "regular" &&
     css`
