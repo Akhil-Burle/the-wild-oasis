@@ -1,3 +1,8 @@
+
+
+imp.txt
+Supabase.txt
+
 # Logs
 logs
 *.log
@@ -24,5 +29,3 @@ dist-ssr
 *.sln
 *.sw?
 
-imp.txt
-Supabase.txt
