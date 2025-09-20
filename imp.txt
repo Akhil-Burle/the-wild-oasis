@@ -1,0 +1,2 @@
+isLoading is called isPending
+cacheTime option is now called gcTime
